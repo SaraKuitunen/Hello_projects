@@ -1,0 +1,196 @@
+<html>
+    <head>
+        <style type="text/css" scoped>
+            .assoc-scrolling {
+                max-height: 500px;
+                overflow-y: scroll;
+                position: relative;
+
+                /* If not set, scrolled text will appear above the table header.
+                   We could have used padding-top: 0; only, but it actually looks better
+                   with no padding at all.
+                 */
+                padding: 0;
+            }
+
+            /* Reset default display: table; from browsers */
+            [role="table"] {
+                display: block;
+            }
+
+            /* Grid table layout */
+            [role="rowgroup"]:nth-child(1) {
+                position: sticky;
+                top: 0;
+                background-color: #fafafa;
+                border-top-width: 1px;
+                border-bottom-width: 1px;
+                font-weight: bold;
+            }
+
+            .grid-assoc-header-top {
+                display: grid;
+                grid-template-columns: 6fr 10fr 14fr;
+            }
+
+            .grid-assoc-header-bottom {
+                display: grid;
+                grid-template-columns: 6fr 2fr 2fr 2fr 2fr 2fr 2fr 2fr 2fr 2fr 2fr 2fr 2fr;
+            }
+            .grid-assoc-body {
+                display: grid;
+                grid-template-columns: 6fr 2fr 2fr 2fr 2fr 2fr 2fr 2fr 2fr 2fr 2fr 2fr 2fr;
+            }
+
+            /* Place table header widget near the bottom */
+            [role="columnheader"] {
+                display: grid;
+                grid-template-columns: 1fr;
+            }
+            [role="columnheader"] p:last-child {
+                align-self: end;
+                margin-top: 0.25rem;
+            }
+            /* Hide overflowing endpoint code name */
+            [role="cell"]:nth-child(1) {
+                overflow: hidden;
+            }
+        </style>
+    </head>
+    <main>
+        <p> test table</p>
+
+        <div role="table" class="assoc-scrolling">
+            <div role="rowgroup">
+                <div role="row" class="grid-assoc-header-top">
+                    <div role="columnheader">
+                        <p>Endpoint</p>
+                    </div>
+
+                    <div role="columnheader" aria-colspan="5">
+                        <p>FinRegistry analyses</p>
+                    </div>
+
+                    <div role="columnheader" aria-colspan="7">
+                        <p>FinnGen analyses</p>
+                    </div>
+                </div>
+
+                <div role="row" class="grid-assoc-header-bottom">
+                    <div role="columnheader">
+                        <p>
+                            filter by name
+                        </p>
+                    </div>
+
+                    <!-- FinRegistry analyses -->
+                    <div role="columnheader">
+                        <p><abbr data-title="Number of overlapping events in FinRegistry">N</abbr></p>
+                    </div>
+
+                    <div role="columnheader">
+                        <p>Case overlap (%)</p>
+                    </div>
+
+                    <div role="columnheader">
+                        <p>HR [95%&nbsp;CI]</p>
+                    </div>
+
+                    <div role="columnheader">
+                        <p>p-value</p>
+                    </div>
+
+                    <div role="columnheader">
+                        <p>?</p>
+                    </div>
+
+                    <!-- FinnGen analyses -->
+                    <div role="columnheader">
+                        <p><abbr data-title="Number of overlapping events in FinnGen">N</abbr></p>
+                    </div>
+
+                    <div role="columnheader">
+                        <p>Case overlap (%)</p>
+                    </div>
+
+                    <div role="columnheader">
+                        <p>RG [95%&nbsp;CI]</p>
+                    </div>
+
+                    <div role="columnheader">
+                        <p>p-value</p>
+                    </div>
+
+                    <div role="columnheader">
+                        <p>?</p>
+                    </div>
+
+                    <div role="columnheader">
+                        <p>GWS hits</p>
+                    </div>
+
+                    <div role="columnheader">
+                        <p>Coloc GWS hits</p>
+                    </div>
+                </div>
+            </div>
+
+            <div role="rowgroup">
+                <div role="row" class="grid-assoc-body">
+                    <!-- ENDPOINT NAME -->
+                    <div role="cell">
+                        <a :href="'/endpoints/' + endpoint.name" :title="endpoint.name">{{ endpoint.longname }}</a>
+                    </div>
+
+                    <div role="cell">
+                        378
+                    </div>
+
+                    <div role="cell">
+                        15.4
+                    </div>
+
+                    <div role="cell">
+                        17.37 [11.79, 25.60]
+                    </div>
+
+                    <div role="cell">
+                        3.6e-15
+                    </div>
+
+                    <div role="cell">
+                        compBox
+                    </div>
+
+                    <div role="cell">
+                        178
+                    </div>
+
+                    <div role="cell">
+                        23.6
+                    </div>
+
+                    <div role="cell">
+                        8.2 [7.4, 12.3]
+                    </div>
+
+                    <div role="cell">
+                        1.3e-14
+                    </div>
+
+                    <div role="cell">
+                        compbox
+                    </div>
+
+                    <div role="cell">
+                        45
+                    </div>
+
+                    <div role="cell">
+                        4
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</html>

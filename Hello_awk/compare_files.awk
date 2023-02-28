@@ -1,0 +1,1 @@
+awk 'FNR==NR {a[$1]; next} $1 in a' f1 f2

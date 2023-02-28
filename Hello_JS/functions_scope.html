@@ -1,0 +1,69 @@
+<!-- 
+Function SCOPE and conflicts
+
+The top level outside all functions is called the global scope. 
+Values defined in the global scope are accessible from everywhere in the code.
+
+variables and other things defined inside the function are inside their own separate scope, 
+meaning that they are locked away in their own separate compartments, 
+unreachable from code outside the functions.
+
+
+Enter following command in JavaScript console:
+output(x); # returns 1
+output(y); # returns ReferenceError: Can't find variable: y, because it is defined inside function
+output(z); # returns ReferenceError: Can't find variable: z
+
+a_return(); # returns 2, because calls a function, which call output() function to return the value
+b_return(); # returns 1, i.e. value of x
+
+output(y); # gives an error
+-->
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Function scope example</title>
+</head>
+<body>
+
+  <script>
+    let x = 1;
+
+    function a() {
+      let y = 2;
+    }
+
+    function b() {
+      let z = 3;
+    }
+
+    // this function returns the value, because the output() function is being called inside function
+    // — in the same scope as the variables it is printing are defined in. 
+    function a_return(){
+        let y = 2;
+        output(y);
+    }
+
+    // prints the value of x to the browser viewport. 
+    // These work fine because even though the output() calls are not in the same scope 
+    // as x is defined in, x is a global variable so is available inside all code, everywhere.
+    function b_return() {
+        let z = 3;
+        output(x);
+    } 
+    
+    // Gives ReferenceError: Can't find variable: y, 
+    // because variable y is not in the same scope with output() function
+    function b_fail() {
+        output(y);
+    }
+
+    function output(value) {
+      const para = document.createElement('p');
+      document.body.appendChild(para);
+      para.textContent = 'Value: ' + value;
+    }
+  </script>
+</body>
+</html>

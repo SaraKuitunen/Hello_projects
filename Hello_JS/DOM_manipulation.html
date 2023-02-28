@@ -1,0 +1,45 @@
+<!-- DOM manipulation -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple DOM example</title>
+  </head>
+  <body>
+      <section>
+        <img src="dinosaur.png" alt="A red Tyrannosaurus Rex: A two legged dinosaur standing upright like a human, with small arms, and a large head with lots of sharp teeth.">
+        <p>Here we will add a link to the <a href="https://www.mozilla.org/">Mozilla homepage</a></p>
+      </section>
+  </body>
+  <script>
+      ///// Adding nodes to the DOM 
+
+      // select a FIRST <a> element and store a reference to it inside a 'link' variable. 
+      // document.querySelectorAll() selects all elements that matches the selector
+      const link = document.querySelector('a');
+      link.textContent = 'Mozilla Developer Network'; // update text content of the link
+      link.href = 'https://developer.mozilla.org'; // update URL
+
+      const sect = document.querySelector('section'); // reference to <section> element 
+      const para = document.createElement('p'); // create paragraph (an element node)
+      para.textContent = 'We hope you enjoyed the ride!'; // text content to <p> element 
+      sect.appendChild(para); // append the new paragraph (element node) at the end of the section
+      
+      const text = document.createTextNode(' — the premier source for web development knowledge.'); // text node
+      const linkPara = document.querySelector('p'); // reference to the paragraph the link is inside
+      linkPara.appendChild(text); // append text node to the paragraph
+
+      ///// Moving and removing elements
+
+      // move the paragraph with the link inside it to the bottom of the section
+      sect.appendChild(linkPara);
+
+      // remove text node within linkPara 
+      sect.removeChild(linkPara); // remove child element of linkPara. use this if possible
+
+      linkPara.remove(); // remove linkPara element. NOT supported by older browsers.
+      linkPara.parentNode.removeChild(linkPara); // -> work around to delete the element itself on older browsers
+
+  </script>
+</html>

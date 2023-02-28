@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Function library example</title>
+  <style>
+    input {
+      font-size: 2em;
+      margin: 10px 1px 0;
+    }
+  </style>
+</head>
+<body>
+
+  <input class="numberInput" type="text">
+  <p></p>
+
+  <script>
+    const input = document.querySelector('.numberInput');
+    const para = document.querySelector('p');
+
+    function squared(num) {
+        return num * num;
+    }
+
+    function cubed(num) {
+        return num * num * num;
+    }
+
+    function factorial(num){
+        if (num < 0) return undefined;
+        if (num == 0) return 1;
+        let x = num - 1;
+        while (x > 1) {
+            num *= x;
+            x--;
+        }
+        return num;
+    }
+
+    /* onchange event handler runs whenever the change event fires on the text input 
+    — that is, when a new value is entered into the text input, and submitted 
+    (e.g., enter a value, then unfocus the input by pressing Tab or Return). 
+    When this anonymous function runs, the value in the input is stored in the num constant.*/
+    input.onchange = function() {
+        const num = parseFloat(input.value);
+        if (isNaN(num)) { // The isNaN() function to test whether the num value is not a number
+            para.textContent = 'You need ot enter a number!';
+        } else {
+            para.textContent = num + ' squared is ' + squared(num) + '. ' +
+                               num + ' cubed is ' + cubed(num) + '. ' +
+                               num + ' factorial is ' + factorial(num) + '. ';
+        }
+    }
+
+  </script>
+</body>
+</html>

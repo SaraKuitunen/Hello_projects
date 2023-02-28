@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Random color example — event handler property</title>
+    <style>
+      button {
+        margin: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <button>Change color</button>
+    <script>
+    /*
+    EVENTS not really part of the core JavaScript — they are defined in browser Web APIs.
+    The different contexts in which JavaScript is used have different event models 
+    from Web APIs to other areas such as browser WebExtensions and Node.js (server-side JavaScript).
+
+    Events are actions or occurrences that happen in the system you are programming 
+    — the system produces (or "fires") a signal of some kind when an event occurs, 
+    and provides a mechanism by which an action can be automatically taken 
+    (that is, some code running) when the event occurs. 
+
+    In the case of the Web, events are fired inside the browser window, 
+    and tend to be attached to a specific item that resides in it 
+    — this might be a single element, set of elements, the HTML document loaded in the current tab, 
+    or the entire browser window. 
+     
+    There are many different types of events that can occur. For example:
+
+    - The user selects a certain element or hovers the cursor over a certain element.
+    - The user chooses a key on the keyboard.
+    - The user resizes or closes the browser window.
+    - A web page finishes loading.
+    - A form is submitted.
+    - A video is played, paused, or finishes.
+    - An error occurs.
+
+    Event reference: https://developer.mozilla.org/en-US/docs/Web/Events
+
+    Each available event has an event handler, which is a block of code 
+    (usually a JavaScript function) that runs when the event fires. 
+    When such a block of code is defined to run in response to an event, 
+    we say we are registering an event handler. 
+    Note: Event handlers are sometimes called event listeners, 
+    although strictly speaking, they work together. 
+    The listener listens out for the event happening, and the handler 
+    is the code that is run in response to it happening.
+
+    NOTE that event model in JavaScript for web pages differs from 
+    the event model for JavaScript as it is used in other environments.
+    
+    For example, Node.js is a very popular JavaScript runtime that enables 
+    developers to use JavaScript to build network and server-side applications. 
+    The Node.js event model relies on listeners to listen for events and 
+    emitters to emit events periodically. on() function registers an event listener, 
+    and once() registers an event listener that unregisters after it has run once.
+    */  
+      const btn = document.querySelector('button');
+
+      // btn.onclick = bgChange; // onclick property is the event handler property. when it is set to be equal to some code, that code is run when the event fires on the button.
+      // btn.onfocus = bgChange; // Fires when the button is focused by pressing tab. works only in Chrome
+      // btn.onblur = bgChange; // Fires when the button is unfocused by pressing tab again. works only in Chrome
+      // btn.ondblclick = bgChange; 
+      // window.onkeydown = bgChange; // color changes when key is pressed on keyboard. 
+      // window.onkeyup = bgChange; // NOTE, event handler needs to be registered to the window object. keydown and keyup refer to just the key down and key up parts of the keystroke
+      // btn.onmouseover = bgChange; // The color changes when the mouse pointer hovers over the button
+      btn.onmouseout = bgChange; // The color changes when the pointer moves off the button
+
+      /* Some events are general and available nearly anywhere 
+      (e.g. an onclick handler can be registered on nearly any element), 
+      whereas some are more specific and only useful in certain situations 
+      (e.g. it makes sense to use onplay only on specific elements, such as <video>).
+      */
+
+      // DO NOT use inline event handlers!! Keep HTML and JavaScript separated
+      // Never use the HTML event handler attributes — those are outdated, and using them is bad practice.
+
+      // add event handler to ALL buttons on the page
+      const buttons = document.querySelectorAll('button');
+      
+      for (let i = 0; i < buttons.length; i++) {
+        buttons[i].ondblclick = bgChange;
+      }      
+      // NOTE, that now there's event handler for btn AND buttons and it works fine.
+
+      // Other way to add event handler for ALL buttons. uses same 'buttons' variable as above handler
+      buttons.forEach(function(buttons) {
+        buttons.onmouseover = bgChange;
+      });
+
+      /***** addEventListener() – preferable method!!! *****/
+      // addEventListener() method is a moder way to add event handlers
+      // Note, it is ok to put all the code inside the addEventListener() function, in an anonymous function
+
+      btn.addEventListener('click', bgChange);
+      btn.addEventListener('click', btnChange);
+
+      /* Advantages of addEventListener()
+
+      1.
+      has counterpart function: btn.removeEventListener('click', bgChange);
+      Event handlers can also be removed by passing an AbortSignal to addEventListener() 
+      and then, later, calling abort() on the controller owning the AbortSignal. 
+
+      For larger programs, cleaning up old, unused event handlers can improve efficiency. 
+      Plus, the ability to remove event handlers allows you to have the same button performing 
+      different actions in different circumstances — all you have to do is add or remove handlers.
+
+      2. 
+      Allows you to register multiple handlers for the same listener. This is not possible on event handler properties.
+
+      myElement.addEventListener('click', functionA);
+      myElement.addEventListener('click', functionB);
+      
+      3. other more powerful features
+      https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener
+      https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/removeEventListener
+      */
+
+      function random(number) {
+        return Math.floor(Math.random()*number);
+      }
+
+      function bgChange() {
+        const rndCol = 'rgb(' + random(255) + ',' + random(255) + ',' + random(255) + ')';
+        document.body.style.backgroundColor = rndCol;
+      }
+
+      function btnChange(e) { // e is an event object. it's automatically passed to event handlers (no need to provide as an argument in function call)
+        const rndCol = 'rgb(' + random(255) + ',' + random(255) + ',' + random(255) + ')';
+        e.target.style.backgroundColor = rndCol; // The target property of the event object is always a reference to the element the event occurred upon. -> here, e.target references the button
+        console.log(e);
+      }
+      /*
+      e.target is incredibly useful when you want to set the same event handler on multiple elements 
+      and do something to all of them when an event occurs on them. 
+      You might, for example, have a set of 16 tiles that disappear when selected. 
+      It is useful to always be able to just set the thing to disappear as e.target, 
+      rather than having to select it in some more difficult way.
+      */
+
+      /*
+      BUBBLING and CAPTURING
+
+      https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Events
+
+      When an event is fired on an element that has parent elements, modern browsers run three different phases 
+      — the capturing phase, the target phase, and the bubbling phase.
+
+      capturing phase: runs event handlers (if exists) from the outer-most ancestor until direct parent of the of the element that was actually selected.
+      target phase: The browser checks to see if the target property has an event handler for the selected event (e.g. click) registered on it, and runs it if so.
+      bubbling phase: the browser checks for and runs event handlers if they exists from the direct parent until <html> element, unless bubbles = false
+
+      calling stopPropagation function on a handler's event object, makes it so that first handler is run 
+      but the event doesn't bubble any further up the chain, so no more handlers will be run.
+
+      what is the difference between setting e.stopPropagation(); and bubbles=false; ????
+
+      Event delegation: thanks to bubbing, if some code is wanted to be run when when any children element is elected, 
+      the event listener can be set to their parent element and have events that happen on children elements bubble up to their parent 
+      rather than having to set the event listener on every child individually.
+
+      read more about event delegation: https://davidwalsh.name/event-delegate
+      */
+    </script>
+  </body>
+</html>

@@ -1,0 +1,7 @@
+C3_EXAMPLE_CANCER
+AB1_ANUG,#AB1,,,no,Case count < 50,Acute necrotizing ulcerative gingivitis,,,,,,,,,,,,A6910,,,,,,,A6910,,,,,,,,,,,,,,,,,,,,,,DF6,,,,,,,,
+AB1_ARENAVIRAL_FEVER,#AB1,3,,no,Case count < 50,Arenaviral haemorrhagic fever,,AB1_ARTHROPOD,,,,,,,,,,A96,$!$,$!$,,,,,A96,$!$,$!$,,,,,,,,,,,,,,,,,,,,DF5,,,,,,,,
+AB1_ARTHROPOD,#AB1,2,,no,"Correlated endpoint, see Correlation cluster Sheet",Arthropod-borne viral fevers and viral haemorrhagic fevers,,,,,AB1_DENGUE_FEVER|AB1_DENGUE_HEMORR|AB1_OTHER_MOSQUITO_FEVER|AB1_ANTHRO_VIRAL_FEVER_NOS|AB1_YELLOW_FEVER|AB1_ARENAVIRAL_FEVER|AB1_DENGUE|AB1_VIRAL_HEMOR_FEVER_NOS,,,,,,,A9[0-9],06[5-6]|078[6-7],06[1|7-8],,,,,A9[0-9],06[5-6]|078[6-7],06[1|7-8],,,,,,,,,,,,,,,,,,,,DF2,,,9.2.2021,Clin. team/AH,Correlated or redundant endpoint,9.2.2021,Clin. team/AH,Correlated or redundant endpoint
+E4_DM1COMA,"#E4,#ASTHMA_CM,#COPD_CM,#DIAB,#OPHTAL_CM,#GASTRO_CM,#ILD_CM,#NEURO_CM",4,2,yes,,Type 1 diabetes with coma,,E4_DIABETES,,,,,,,,,,E100,2502B,$!$,,,,,E100,2502B,$!$,,,,,,,,,,,,,,,,,,,,DF4,,,,,,,,
+AB1_ARENAVIRAL_FEVER
+J10_ASTHMA

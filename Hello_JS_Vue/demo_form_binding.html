@@ -1,0 +1,30 @@
+<!--
+We can create two-way bindings between state and form inputs using the v-model directive.
+-->
+
+<script type="module">
+import { createApp, ref } from 'vue'
+
+createApp({
+  setup() {
+    const selected = ref('A')
+
+    return {
+      selected
+    }
+  }
+}).mount('#app')
+</script>
+
+<div id="app">
+
+  <h2>Select</h2>
+  <select v-model="selected">
+    <option disabled value="">Please select one</option>
+    <option>A</option>
+    <option>B</option>
+    <option>C</option>
+  </select>
+  <div>Selected: {{ selected }}</div>
+
+</div>

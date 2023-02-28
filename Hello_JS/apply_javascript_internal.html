@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <title>Apply JavaScript example</title>
+    <script>
+      /* Below line and closing part "});" is an event listener, 
+      which listens for the browser's "DOMContentLoaded" event, 
+      which signifies that the HTML body is completely loaded and parsed. 
+      The JavaScript inside this block will not run until after that event is fired, 
+      therefore the error caused by JavaScript loading and parsing before HTML is avoided
+      
+      An old-fashioned solution to this problem used to be to put your script element right 
+      at the bottom of the body (e.g. just before the </body> tag), so that it would load 
+      after all the HTML has been parsed. The problem with this solution is that loading/parsing 
+      of the script is completely blocked until the HTML DOM has been loaded. 
+      On larger sites with lots of JavaScript, this can cause a major performance issue, 
+      slowing down your site.
+      */
+      document.addEventListener("DOMContentLoaded", function() { 
+        function createParagraph() {
+          let para = document.createElement('p'); // remember to have the "document" and be careful with spelling//
+          para.textContent = 'You clicked the button!';
+          document.body.appendChild(para);
+        }
+        const buttons = document.querySelectorAll('button');
+
+        for(let i = 0; i < buttons.length; i++){
+          buttons[i].addEventListener('click', createParagraph);
+        }
+      });
+    </script> 
+  </head>
+  <body>
+    <button>Click me</button>
+  </body>
+</html>
+

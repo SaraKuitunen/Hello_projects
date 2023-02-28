@@ -1,0 +1,13 @@
+.wrapper {
+    display: grid;
+    /*grid-template-columns: repeat(2, 1fr);*/ /* same as below */
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    display: flex;
+}
+
+.box {
+    background-color: rgb(224, 241, 234);
+    margin-bottom: 10px;
+}
+

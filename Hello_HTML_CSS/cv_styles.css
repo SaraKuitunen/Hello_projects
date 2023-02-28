@@ -1,0 +1,151 @@
+* {
+    box-sizing: border-box;
+    font-family: "Gill Sans MT", Calibri, sans-serif;
+    /* font-family: "Gill Sans Extrabold", sans-serif;*/
+    text-align: center;
+    line-height: 1.5;
+}
+
+
+html, body {
+    width: 210mm;
+    height: 297mm;
+}
+
+/*used ot show A4 page borders, some padding on the edges
+html {
+    border: 1px solid black; 
+}*/
+
+
+body {
+    margin: 0; /* margin needs to be 0 to body be exactly on top of html element */
+    /* border: 1px solid red;*/
+}
+
+/* make A4 size */
+@page {
+    size: A4;
+    margin: 0;
+}
+
+@media print {
+    html, body {
+        width: 210mm;
+        height: 297mm;
+    }
+}
+
+/*
+.header-row {
+display: unset;
+text-align: right;
+align-self: center;
+}
+
+.header-row > * {
+    margin-left: 0;
+}
+
+.grid-1 {
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-items: center;
+    align-items: center;
+}*/
+
+.grid-1-2 {
+    display: grid;
+    /*grid-template-columns: repeat(2, 1fr);*/ /* same as below */
+    grid-template-columns: 2fr 3fr;
+    gap: 40px;
+    grid-auto-rows: minmax(100px, auto);
+}
+
+.one {
+    grid-column: 1;
+}
+
+.two {
+    grid-column: 2;
+}
+
+.three {
+    grid-column: 1;
+    grid-row: 2 / 5;
+}
+
+/*
+.center {
+    text-align: center;
+}*/
+
+img {
+    /* 295 × 222*/
+    height: calc(222px / 1.6);
+    width: calc(295px / 1.6);
+}
+
+.img-logos {
+    height: 30px;
+    width: 30px;
+}
+
+.ml {
+    margin-left: 0.5em;
+}
+
+.mr {
+    margin-right: 0.5em;
+}
+
+.mt {
+    margin-top: 2.2em;
+}
+
+.mt-1-5 {
+    margin-top: 1.5em;
+}
+
+.pb-0-mb-0 {
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+.title-line {
+    border-top: 1px solid #0f766e;
+    border-bottom: 1px solid #0f766e;
+}
+
+.profile-image {
+    padding: 0;
+    margin-bottom: 0.2em;
+}
+
+h1 {
+    margin-bottom: 0.5em;
+    color: #0f766e;
+    /* #064e3b*/
+}
+h2 {
+    padding: 0.2em;
+}
+
+
+h2 {
+    font-size: 1.3em;
+    font-weight: normal;
+}
+
+h3 {
+    font-size: 1.1em;
+    margin-bottom: 0.3em;
+}
+
+p {
+    margin-top: 0;
+}
+
+a {
+    color: #0f766e;
+}

@@ -1,0 +1,10 @@
+/* these classes allows wrapping a long string without a white space character */
+.word-break {
+    word-break: break-all;
+}
+
+.word-break-200 {
+    width: 16rem;
+    word-wrap: break-word;
+    display: inline-block;
+}

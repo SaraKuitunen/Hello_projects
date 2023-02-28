@@ -1,0 +1,112 @@
+<html>
+    <header>
+        <style>
+            /* Grid table layout */
+            .grid-assoc-header {
+                display: grid;
+                grid-template-columns: 1fr;
+
+                position: sticky;
+                top: 0;
+                background-color: #fafafa;
+                border-top-width: 1px;
+                border-bottom-width: 1px;
+                font-weight: bold;
+            }
+
+            .grid-assoc-header-top {
+                display: grid;
+                grid-template-columns: 6fr 9fr 9fr;
+            }
+            .grid-assoc-body {
+	            display: grid;
+	            grid-template-columns: 6fr 3fr 2fr 2fr 2fr 3fr 2fr 2fr 2fr;
+                gap: 10px;
+            }
+
+            .grid-assoc-body > * {
+                background-color: aliceblue;
+                border-style: solid;
+            }
+        </style>
+    </header>
+    <body>
+        <div role="table">
+            <div role="rowgroup" class="grid-assoc-header">
+                <div role="row" class="grid-assoc-header-top">
+                    <div role="columnheader">
+                        <p>Endpoint</p>
+                    </div>
+
+                    <div role="columnheader" aria-colspan="4">
+                        <p>Before {{ phenocode }}</p>
+                    </div>
+
+                    <div role="columnheader" aria-colspan="4">
+                        <p>After {{ phenocode }}</p>
+                    </div>
+            </div>
+        </div>
+
+        <div role="rowgroup">
+            <div role="row" class="grid-assoc-body">
+                <div role="cell">
+                    1111111111111 1111111111111 1111111111111 1111111111111
+                </div>
+                <div role="cell">
+                    222222
+                </div>
+                <div role="cell">
+                    19.11 [11.85, 30.80]
+                </div>
+                <div role="cell">
+                    44444444 4444 4444444 444444 444
+                </div>
+                <div role="cell">
+                    5
+                </div>
+                <div role="cell">
+                    6666
+                </div>
+                <div role="cell">
+                    77777
+                </div>
+                <div role="cell">
+                    88
+                </div>
+                <div role="cell">
+                    9999999
+                </div>
+            </div>
+            <div role="row" class="grid-assoc-body">
+                <div role="cell">
+                    1111111111111
+                </div>
+                <div role="cell">
+                    222222 22  2222 2222222 22 2
+                </div>
+                <div role="cell">
+                    19.11 [11.85, 30.80]
+                </div>
+                <div role="cell">
+                    44444444
+                </div>
+                <div role="cell">
+                    5
+                </div>
+                <div role="cell">
+                    6666
+                </div>
+                <div role="cell">
+                    77777
+                </div>
+                <div role="cell">
+                    88
+                </div>
+                <div role="cell">
+                    9999999
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

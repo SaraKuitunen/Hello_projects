@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Function start</title>
+    <style>
+      .msgBox {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        width: 242px;
+        background: #eee;
+      }
+
+      .msgBox p {
+        line-height: 1.5;
+        padding: 10px 20px;
+        color: #333;
+        padding-left: 82px;
+        background-position: 25px center;
+        background-repeat: no-repeat;
+      }
+
+      .msgBox button {
+        background: none;
+        border: none;
+        position: absolute;
+        top: 0;
+        right: 0;
+        font-size: 1.1rem;
+        color: #aaa;
+      }
+
+    </style>
+  </head>
+  <body>
+    <button>Display message box</button>
+
+    <script>
+        // alert('message on pop up window');
+        // shows simple message box. Here own message box is created
+        function displayMessage(msgText, msgType) {
+            const html = document.querySelector('html');
+
+            const panel = document.createElement('div');
+            panel.setAttribute('class', 'msgBox');
+            html.appendChild(panel);
+
+            const msg = document.createElement('p');
+            msg.textContent = msgText;
+            panel.appendChild(msg);
+
+            const closeBtn = document.createElement('button');
+            closeBtn.textContent = 'x';
+            panel.appendChild(closeBtn);
+
+            // use an GlobalEventHandlers.onclick event handler
+            closeBtn.onclick = function(){
+                panel.parentNode.removeChild(panel);
+            }
+            /* above block of code generates a block of HTML that looks like below
+            <div class="msgBox">
+                <p>This is a message box</p>
+                <button>x</button>
+            </div>           
+            */
+
+            // modify message box based on msgType
+            if (msgType === 'warning') {
+                msg.style.backgroundImage = 'url(icons/warning.png)';
+                panel.style.backgroundColor = 'red';
+            } else if (msgType === 'chat') {
+                msg.style.backgroundImage = 'url(icons/chat.png)';
+                panel.style.backgroundColor = 'aqua';
+            } else { // a default state if no msgType parameter is provided, meaning that it is an optional parameter!
+                msg.style.paddingLeft = '20px'; 
+            }
+        }
+
+        // select the button element and store a reference to it in a constant
+        const btn = document.querySelector('button'); 
+        
+        /* call displayMessage function when the button is clicked.
+        NOTE that PARENTHESIS are NOT included in the function call!!!
+        The parentheses in this context are sometimes called the "function invocation operator". 
+        Only use them when you want to run the function immediately in the current scope. 
+        In the same respect, the code inside the anonymous function is not run immediately, 
+        as it is inside the function scope.
+        IF parenthesis were included, the message box would show up when the page is loded, 
+        not when the button is clicked. 
+        */
+
+        // btn.onclick = displayMessage; # this works when function did NOT have parameters
+
+        // function with parameters need to be called from within an anonymous function
+        // so that it isn't in the immediate scope and therefore isn't called immediately. 
+        // Now it will not be called until the button is clicked.
+        btn.onclick = function() {
+            // displayMessage('This is a new message', 'warning')
+            displayMessage('This is a new message', 'chat')
+        }
+
+    </script>
+  </body>
+</html>

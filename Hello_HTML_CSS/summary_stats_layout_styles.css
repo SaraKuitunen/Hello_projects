@@ -1,0 +1,77 @@
+/* -- Sections -- Summary stats grid */
+@media (min-width: 650px) {
+    .stats-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+    .stats-grid > .left-right-heading {
+        grid-area: 1 / 1 / 3 / 3;  /* 1st line, span 2 cols */
+    }
+
+    .year-distrib {
+        /* Span 2 rows in a single column */
+        grid-area: 4 / 2 / 6 / 2;
+    }
+}
+
+article.box > ul, article.box > ol {
+    @apply pl-8;
+}
+
+/* -- Sections */
+.box{
+    @apply border;
+    @apply mb-8;
+    @apply mt-4;
+    @apply subtle-shadow;
+}
+
+.box {
+    background-color: white;
+}
+
+.box h2 {
+    @apply bg-grey-lightest;
+}
+
+.box h3 {
+    @apply mb-2;
+}
+
+.box > * {
+    @apply p-2;
+}
+
+/* Split heading [ left       |   right ] */
+.left-right-heading {
+    display: grid;
+    grid-template-columns: auto auto;
+    @apply bg-grey-lightest;
+}
+.left-right-heading > a {
+    display: block;
+    text-align: right;
+    text-decoration: none;
+    @apply text-2xl;
+}
+
+/* --Sections -- Summary stats -- project specific sections */
+.sumstats > article {
+    margin-top: 3em;
+    background-color: aqua;
+}
+
+
+/* -- horizontal */
+table.horizontal thead {
+    @apply bg-grey-lightest;
+    @apply border-t;
+    @apply border-b;
+}
+table.horizontal th {
+    font-weight: normal;
+}
+table.horizontal tbody tr:nth-child(2n) {
+    @apply bg-grey-lightest;
+}
+

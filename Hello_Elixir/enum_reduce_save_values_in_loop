@@ -1,0 +1,12 @@
+mortality_data = %{name: "test"}
+
+mortality_data = Enum.reduce ["exposure", "sex"], mortality_data, fn covariate_name, acc ->
+  data = covariate_name <> " data"
+  IO.puts(covariate_name)
+  case covariate_name do
+    "exposure" ->
+      IO.puts("exposure" == covariate_name)
+      Map.put(acc, :exposure, data)
+    "sex" -> Map.put(acc, :sex, data)
+  end
+end
